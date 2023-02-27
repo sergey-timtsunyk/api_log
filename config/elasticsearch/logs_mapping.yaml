@@ -1,0 +1,30 @@
+settings:
+    number_of_replicas: 0
+    number_of_shards: 1
+    refresh_interval: 60s
+mappings:
+    dynamic: false
+    properties:
+        message:
+            type: text
+            analyzer: english
+        user:
+            type: keyword
+        userAuth:
+            type: keyword
+        time:
+            type: date
+            store: true
+            format: "dd/MMM/yyyy:HH:mm:ss Z"
+        host:
+            type: ip
+        method:
+            type: keyword
+        request:
+            type: keyword
+        protocol:
+            type: keyword
+        status:
+            type: short
+        bytes:
+            type: integer
