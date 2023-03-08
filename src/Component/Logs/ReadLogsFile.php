@@ -9,7 +9,7 @@ use Psr\Cache\CacheItemPoolInterface;
 use Psr\Cache\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 
-final class ReadLogsFile implements ReadLogs
+class ReadLogsFile implements ReadLogs
 {
     private const CACHE_KEY = 'read.log.offset';
     private const PATH_CONFIG_KEY = 'app.log_path';

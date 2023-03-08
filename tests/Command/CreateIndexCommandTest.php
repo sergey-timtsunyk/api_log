@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Command;
 
 use JoliCode\Elastically\Client;
-use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -23,10 +23,10 @@ final class CreateIndexCommandTest extends KernelTestCase
             ->getMock();
         $container->set(Client::class, $bag);
 
-        $logger = $this->getMockBuilder(LoggerInterface::class)
+        $logger = $this->getMockBuilder(NullLogger::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $container->set(LoggerInterface::class, $logger);
+        $container->set(NullLogger::class, $logger);
 
         $command = $application->find('app:creat-index');
         $commandTester = new CommandTester($command);

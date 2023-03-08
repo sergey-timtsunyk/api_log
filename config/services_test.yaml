@@ -1,3 +1,9 @@
 services:
     _defaults:
         public: true
+
+    App\Component\Logs\ReadLogs: ~
+    JoliCode\Elastically\Client: ~
+ #   Psr\Log\LoggerInterface: ~
+    Symfony\Component\Messenger\MessageBusInterface: ~
+    Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface: ~

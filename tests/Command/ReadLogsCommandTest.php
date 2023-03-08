@@ -28,12 +28,21 @@ final class ReadLogsCommandTest extends KernelTestCase
         $bus = $this->getMockBuilder(MessageBusInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
+/*        $bus->expects(self::once())
+            ->method('dispatch')
+            ->with();*/
         $container->set(MessageBusInterface::class, $bus);
 
-        $bag = $this->getMockBuilder(ReadLogs::class)
+        $readLogs = $this->getMockBuilder(ReadLogs::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $container->set(ReadLogs::class, $bag);
+        $readLogs->expects(self::once())
+            ->method('open')
+            ->with($bag);
+        $readLogs->expects(self::once())
+            ->method('read')
+            ->with(self::callback(static fn(): bool => true));
+        $container->set(ReadLogs::class, $readLogs);
 
         $command = $application->find('app:read-log');
         $commandTester = new CommandTester($command);
