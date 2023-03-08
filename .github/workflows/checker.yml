@@ -40,10 +40,6 @@ jobs:
       - name: Check PSR12 code style (PHP_CodeSniffer) TEST
         run: vendor/bin/phpcs --standard=PSR12 src
 
-      # https://github.com/phpmd/phpmd
-      # - name: Analyses PHP Code (PHP Mess Detector)
-      #  run: vendor/bin/phpmd src,tests text .phpmd-ruleset.xml
-
       # https://github.com/phpstan/phpstan
       - name: Analyse PHP Code (PHPStan)
         run: vendor/bin/phpstan analyse src

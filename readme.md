@@ -1,5 +1,13 @@
+# Application for processing logs file
 
-#### Start env
+![tests](https://github.com/serjio-dev/api_log/workflows/app-checker-code/badge.svg)
+
+### Technology
+* PHP 8.1
+* Symfony 5.4
+* Elasticsearch 8.6
+
+#### Start
 
 Setup docker:
 

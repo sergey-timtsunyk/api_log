@@ -8,16 +8,16 @@ RUN apt update && \
     zlib1g-dev \
     libmemcached-dev \
     libzip-dev \
+    libcurl4-openssl-dev \
     zip \
     unzip \
     git \
     && pecl install xdebug \
     && pecl install apcu \
-    && pecl install mongodb \
     && pecl install memcached \
-    && docker-php-ext-install pcntl zip
+    && docker-php-ext-install pcntl zip curl
 
-RUN docker-php-ext-enable memcached apcu mongodb \
+RUN docker-php-ext-enable memcached apcu \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
