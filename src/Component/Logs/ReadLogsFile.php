@@ -28,7 +28,7 @@ class ReadLogsFile implements ReadLogs
      */
     public function open(ContainerBagInterface $params): void
     {
-        $this->file = $params->get(self::PATH_CONFIG_KEY).$params->get(self::FILE_CONFIG_KEY);
+        $this->file = $params->get(self::PATH_CONFIG_KEY) . $params->get(self::FILE_CONFIG_KEY);
 
         if (!file_exists($this->file)) {
             throw new FileOpenException(sprintf('Not fount file to path: [%s].', $this->file));
