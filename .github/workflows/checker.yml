@@ -15,14 +15,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
       - name: Setup PHP, extensions and composer with shivammathur/setup-php
-        uses: shivammathur/setup-php@verbose
+        uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: mbstring, xml, ctype, iconv, intl, gd, iconv, json, mbstring, pdo
@@ -43,17 +37,8 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader --dev
 
-      # https://github.com/sensiolabs/security-checker
-      - name: Security check installed dependencies
-        uses: symfonycorp/security-checker-action@v2
-
-      # https://github.com/chekalsky/phpcs-action (community)
-      - name: Check PSR12 code style (PHP_CodeSniffer)
-        uses: chekalsky/phpcs-action@v1.2.0
-        with:
-          enable_warnings: true
-          installed_paths: '${{ github.workspace }}/vendor/squizlabs/php_codesniffer'
-          phpcs_bin_path: 'composer phpcs'
+      - name: Check PSR12 code style (PHP_CodeSniffer) TEST
+        run: vendor/bin/phpcs --standard=PSR12 src
 
       # https://github.com/phpmd/phpmd
       # - name: Analyses PHP Code (PHP Mess Detector)

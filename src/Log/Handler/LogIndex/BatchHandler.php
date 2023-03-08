@@ -25,7 +25,7 @@ final class BatchHandler implements BatchHandlerInterface
         private readonly Client $client,
         private readonly ContainerBagInterface $params,
     ) {
-        $this->countButch = (int)$this->params->get(self::COUNT_BATCH_CONFIG_KEY);
+        $this->countButch = (int) $this->params->get(self::COUNT_BATCH_CONFIG_KEY);
     }
 
     public function __invoke(Message $message)
@@ -40,7 +40,7 @@ final class BatchHandler implements BatchHandlerInterface
     {
         $indexer = $this->client->getIndexer();
         /**
-         * @var Message $message
+         * @var Message      $message
          * @var Acknowledger $ack
          */
         foreach ($jobs as [$message, $ack]) {
