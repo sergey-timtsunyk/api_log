@@ -9,11 +9,15 @@ use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use JoliCode\Elastically\Client;
 use JoliCode\Elastically\Result;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Role\Role;
 
 #[Route(path: '/log', name: 'log_')]
+#[IsGranted('ROLE_USER')]
 final class Controller
 {
     public function __construct(
